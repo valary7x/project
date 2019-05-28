@@ -5,8 +5,6 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    //UIManager UIManagerScript; // reference to the uimanager script. uimanager is the "type of script" and uimanagerscript is its name
- 
     public GameObject framePrefab;                  // Used to create a new frame of sprites
     public float speed = -5f;
 
@@ -15,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     int score = 0;
     int seconds = 0;
-    float counterTime = 0;                  // Used for the Seconds UI display
+    float counterTime = 0;                          // Used for the Seconds UI display
 
     public ParticleSystem successParticles;         // Particle system to run when a match is correct
     public ParticleSystem failParticles;            // Particle system to run when a match is wrong
@@ -27,19 +25,16 @@ public class GameManager : MonoBehaviour
     public float gameHeight { get; private set; }   // Height of the game view
 
     // When a frame moves left, once it reaches leftExtent it will be destroyed
-    //
     private float leftExtent;            
     
     // When frames are created at the start of the game, they are placed from left
     // to right. When the frames reach rightExtent on the X axis, no more frames
     // are created, and the game can start.
-    //
     private float rightExtent;                      
 
     // The background sprites oscillate from left to right continuously. The A and B
     // positions are the extreme left and right X positions of the oscillation for
     // each sprite
-    //
     private Vector3 bk1PositionA, bk1PositionB;
     private Vector3 bk2PositionA, bk2PositionB;
     private Vector3 bk3PositionA, bk3PositionB;
