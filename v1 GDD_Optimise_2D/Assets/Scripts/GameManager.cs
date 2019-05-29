@@ -11,26 +11,24 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;               // Increments when a mirrored frame is selected
     public TextMeshProUGUI timeText;                // Updates every second
 
-    int score = 0;
-    int seconds = 0;
-    float counterTime = 0;                          // Used for the Seconds UI display
-
     public ParticleSystem successParticles;         // Particle system to run when a match is correct
     public ParticleSystem failParticles;            // Particle system to run when a match is wrong
     public GameObject background1;                  // Background sprite that oscillates left to right 
     public GameObject background2;                  // Background sprite that oscillates left to right 
-    public GameObject background3;                  // Background sprite that oscillates left to right 
+    public GameObject background3;                  // Background sprite that oscillates left to right    
 
-    public float gameWidth { get; private set; }    // Width of the game view
-    public float gameHeight { get; private set; }   // Height of the game view
+    //public float gameWidth { get; private set; }    // Width of the game view
+    //public float gameHeight { get; private set; }   // Height of the game view
 
     // When a frame moves left, once it reaches leftExtent it will be destroyed
-    private float leftExtent;            
-    
+    //
+    //private float leftExtent;
+
     // When frames are created at the start of the game, they are placed from left
     // to right. When the frames reach rightExtent on the X axis, no more frames
     // are created, and the game can start.
-    private float rightExtent;                      
+    //
+    //private float rightExtent;
 
     // The background sprites oscillate from left to right continuously. The A and B
     // positions are the extreme left and right X positions of the oscillation for
@@ -43,6 +41,9 @@ public class GameManager : MonoBehaviour
     private List<GameObject> frames;        // Created frames are stored in this list
     private bool initialised = false;       // When initialised is true, the game can start
 
+    int score = 0;
+    int seconds = 0;
+    float counterTime = 0;                          // Used for the Seconds UI display
     float backgroundTime = 0;               // Used for the background sprites oscillation
 
     GameObject mouse, rabbit, panda;        // The oscillating background sprites
@@ -52,17 +53,25 @@ public class GameManager : MonoBehaviour
     // is the rightmost frame. This is updated every time a new frame is created and placed at the end.
     private GameObject endFrame;
 
+    private Camera cam; //putting Camera into variable
+
+    private float leftExtent;
+    private float rightExtent;
+
+    float gameHeight;
+    float gameWidth;
+
     #region Start()
     private void Start()
     {
-        // Find the height and width of the game view in world units
-        //cache the object
-        gameHeight = Camera.main.orthographicSize * 2f;
-        gameWidth = Camera.main.aspect * gameHeight;
+        //caching camera
+        cam = Camera.main;
 
-        // Calculate the X axis values for frame removal and the positioning of new frames
-        leftExtent = -gameWidth*2f;
-        rightExtent = gameWidth*2f;
+        gameHeight = cam.orthographicSize * 2f;
+        gameWidth = cam.aspect * gameHeight;
+
+        leftExtent = -gameWidth * 2f;
+        rightExtent = gameWidth * 2f;
 
         // Get a reference to each background sprite for oscillation
         mouse = GameObject.Find("MouseBackground");
@@ -590,7 +599,7 @@ public class GameManager : MonoBehaviour
     {
         // Make sure all the frames have been created before the game can be played
         //
-        if(initialised)
+        if (initialised)
         {
             // Rotate all the frame sprites
             //change this
