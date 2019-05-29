@@ -15,20 +15,15 @@ public class GameManager : MonoBehaviour
     public ParticleSystem failParticles;            // Particle system to run when a match is wrong
     public GameObject background1;                  // Background sprite that oscillates left to right 
     public GameObject background2;                  // Background sprite that oscillates left to right 
-    public GameObject background3;                  // Background sprite that oscillates left to right    
+    public GameObject background3;                  // Background sprite that oscillates left to right
 
-    //public float gameWidth { get; private set; }    // Width of the game view
-    //public float gameHeight { get; private set; }   // Height of the game view
+    //putting Camera into variable
+    public Camera cam;
 
-    // When a frame moves left, once it reaches leftExtent it will be destroyed
-    //
-    //private float leftExtent;
-
-    // When frames are created at the start of the game, they are placed from left
-    // to right. When the frames reach rightExtent on the X axis, no more frames
-    // are created, and the game can start.
-    //
-    //private float rightExtent;
+    float gameHeight;
+    float gameWidth;
+    private float leftExtent;
+    private float rightExtent;
 
     // The background sprites oscillate from left to right continuously. The A and B
     // positions are the extreme left and right X positions of the oscillation for
@@ -43,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     int score = 0;
     int seconds = 0;
-    float counterTime = 0;                          // Used for the Seconds UI display
+    float counterTime = 0;                  // Used for the Seconds UI display
     float backgroundTime = 0;               // Used for the background sprites oscillation
 
     GameObject mouse, rabbit, panda;        // The oscillating background sprites
@@ -52,14 +47,6 @@ public class GameManager : MonoBehaviour
     // When a new frame is created, it must be placed behind the rightmost, or end, frame. endFrame
     // is the rightmost frame. This is updated every time a new frame is created and placed at the end.
     private GameObject endFrame;
-
-    private Camera cam; //putting Camera into variable
-
-    private float leftExtent;
-    private float rightExtent;
-
-    float gameHeight;
-    float gameWidth;
 
     #region Start()
     private void Start()

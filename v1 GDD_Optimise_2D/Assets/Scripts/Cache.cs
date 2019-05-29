@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cache : MonoBehaviour
 {
     //putting Camera into variable
-    private Camera cam;
+    public Camera cam;
 
     float gameHeight;
     float gameWidth;
